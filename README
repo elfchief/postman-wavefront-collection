@@ -1,0 +1,4 @@
+Imported from Wavefront's Swagger datafile (available from them at
+https://metrics.wavefront.com/api/v2/swagger.json), imported, categorized,
+and variables added for {{INSTANCE}} and {{AUTH_TOKEN}}. Set these in your
+environment config before making API calls.
