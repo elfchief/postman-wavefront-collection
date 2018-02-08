@@ -1,0 +1,6038 @@
+{
+	"info": {
+		"name": "Wavefront Public API v2",
+		"_postman_id": "655a66d9-08eb-b3c9-f8e9-ea8acb97c786",
+		"description": "<p>The Wavefront public API (v2) enables you to interact with Wavefront servers using standard web service API tools. You can use the API to automate commonly executed operations such as automatically tagging sources.</p><p>When you make API calls outside the Wavefront API documentation you must add the header \"Authorization: Bearer &lt;&lt;API-TOKEN&gt;&gt;\" to your HTTP requests.</p><p>For legacy versions of the Wavefront API, see the <a href=\"/api-docs/ui/deprecated\">legacy API documentation</a>.</p>",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Alerts",
+			"item": [
+				{
+					"name": "Create a specific alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\": \"Alert Name\",\n  \"target\": \"user@example.com\",\n  \"condition\": \"ts(~sample.cpu.loadavg.1m) > 1\",\n  \"displayExpression\": \"ts(~sample.cpu.loadavg.1m)\",\n  \"minutes\": 5,\n  \"resolveAfterMinutes\": 2,\n  \"severity\": \"INFO\",\n  \"additionalInformation\": \"Additional Info\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count alerts of various statuses for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/summary",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								"summary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all alerts for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific alert",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific alert",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"id\": \"1459375928549\",\n  \"name\": \"Alert Name\",\n  \"target\": \"user@example.com\",\n  \"condition\": \"ts(~sample.cpu.loadavg.1m) > 1\",\n  \"displayExpression\": \"ts(~sample.cpu.loadavg.1m)\",\n  \"minutes\": 5,\n  \"resolveAfterMinutes\": 2,\n  \"severity\": \"INFO\",\n  \"additionalInformation\": \"Additional Info\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific alert",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the version history of a specific alert",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/history?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"history"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific historical version of a specific alert",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/history/:version",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"history",
+								":version"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "version",
+									"value": "{{version}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Snooze a specific alert for some number of seconds",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/snooze?seconds={{seconds}}",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"snooze"
+							],
+							"query": [
+								{
+									"key": "seconds",
+									"value": "{{seconds}}",
+									"equals": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tags associated with a specific alert",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/tag",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"tag"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set all tags associated with a specific alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/tag",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"tag"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a tag to a specific alert",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/tag/:tagValue",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"tag",
+								":tagValue"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "tagValue",
+									"value": "{{tagValue}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove a tag from a specific alert",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/tag/:tagValue",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"tag",
+								":tagValue"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "tagValue",
+									"value": "{{tagValue}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undelete a specific alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/undelete",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"undelete"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsnooze a specific alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/alert/:id/unsnooze",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"alert",
+								":id",
+								"unsnooze"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's non-deleted alerts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/alert",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"alert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's deleted alerts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/alert/deleted",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"alert",
+								"deleted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's deleted alerts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/alert/deleted/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"alert",
+								"deleted",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's deleted alerts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/alert/deleted/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"alert",
+								"deleted",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's non-deleted alerts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/alert/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"alert",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's non-deleted alerts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/alert/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"alert",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Charts",
+			"item": [
+				{
+					"name": "Perform a charting query against Wavefront servers that returns the appropriate points in the specified time window and granularity",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json, application/x-javascript; charset=UTF-8, application/javascript; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/chart/api?n={{n}}&q={{q}}&s={{s}}&e={{e}}&g={{g}}&p={{p}}&i={{i}}&autoEvents={{autoEvents}}&summarization={{summarization}}&listMode={{listMode}}&strict={{strict}}&includeObsoleteMetrics={{includeObsoleteMetrics}}&sorted=false",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"chart",
+								"api"
+							],
+							"query": [
+								{
+									"key": "n",
+									"value": "{{n}}",
+									"equals": true
+								},
+								{
+									"key": "q",
+									"value": "{{q}}",
+									"equals": true
+								},
+								{
+									"key": "s",
+									"value": "{{s}}",
+									"equals": true
+								},
+								{
+									"key": "e",
+									"value": "{{e}}",
+									"equals": true
+								},
+								{
+									"key": "g",
+									"value": "{{g}}",
+									"equals": true
+								},
+								{
+									"key": "p",
+									"value": "{{p}}",
+									"equals": true
+								},
+								{
+									"key": "i",
+									"value": "{{i}}",
+									"equals": true
+								},
+								{
+									"key": "autoEvents",
+									"value": "{{autoEvents}}",
+									"equals": true
+								},
+								{
+									"key": "summarization",
+									"value": "{{summarization}}",
+									"equals": true
+								},
+								{
+									"key": "listMode",
+									"value": "{{listMode}}",
+									"equals": true
+								},
+								{
+									"key": "strict",
+									"value": "{{strict}}",
+									"equals": true
+								},
+								{
+									"key": "includeObsoleteMetrics",
+									"value": "{{includeObsoleteMetrics}}",
+									"equals": true
+								},
+								{
+									"key": "sorted",
+									"value": "false",
+									"equals": true
+								}
+							]
+						},
+						"description": "Long time spans and small granularities can take a long time to calculate"
+					},
+					"response": []
+				},
+				{
+					"name": "Get more details on a metric, including reporting sources and approximate last time reported",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json, application/x-javascript, application/javascript"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/chart/metric/detail?m={{m}}&c={{c}}&h={{h}}",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"chart",
+								"metric",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "m",
+									"value": "{{m}}",
+									"equals": true
+								},
+								{
+									"key": "c",
+									"value": "{{c}}",
+									"equals": true
+								},
+								{
+									"key": "h",
+									"value": "{{h}}",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Perform a raw data query against Wavefront servers that returns second granularity points grouped by tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/chart/raw?host={{host}}&source={{source}}&metric={{metric}}&startTime={{startTime}}&endTime={{endTime}}",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"chart",
+								"raw"
+							],
+							"query": [
+								{
+									"key": "host",
+									"value": "{{host}}",
+									"equals": true
+								},
+								{
+									"key": "source",
+									"value": "{{source}}",
+									"equals": true
+								},
+								{
+									"key": "metric",
+									"value": "{{metric}}",
+									"equals": true
+								},
+								{
+									"key": "startTime",
+									"value": "{{startTime}}",
+									"equals": true
+								},
+								{
+									"key": "endTime",
+									"value": "{{endTime}}",
+									"equals": true
+								}
+							]
+						},
+						"description": "An API to check if ingested points are as expected.  Points ingested within a single second are averaged when returned."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "281f0dbc-aee1-4614-bcd5-6e06b0f09613",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7a96d7f-3309-4550-86dd-754b82d51b89",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Cloud Integrations",
+			"item": [
+				{
+					"name": "Get all cloud integrations for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/cloudintegration?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"cloudintegration"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a cloud integration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\":\"CloudWatch integration\",\n  \"service\":\"CLOUDWATCH\",\n  \"cloudWatch\":{\n    \"baseCredentials\":{\n      \"roleArn\":\"arn:aws:iam::&lt;accountid&gt;:role/&lt;rolename&gt;\",\n      \"externalId\":\"wave123\"\n    },\n    \"metricFilterRegex\":\"^aws.(sqs|ec2|ebs|elb).*$\",\n    \"pointTagFilterRegex\":\"(region|name)\"\n  },\n  \"serviceRefreshRateInMins\":5\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/cloudintegration",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"cloudintegration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific cloud integration",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/cloudintegration/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"cloudintegration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific cloud integration",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\":\"CloudWatch integration\",\n  \"service\":\"CLOUDWATCH\",\n  \"cloudWatch\":{\n    \"baseCredentials\":{\n      \"roleArn\":\"arn:aws:iam::&lt;accountid&gt;:role/&lt;rolename&gt;\",\n      \"externalId\":\"wave123\"\n    },\n    \"metricFilterRegex\":\"^aws.(sqs|ec2|ebs|elb).*$\",\n    \"pointTagFilterRegex\":\"(region|name)\"\n  },\n  \"serviceRefreshRateInMins\":5\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/cloudintegration/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"cloudintegration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific cloud integration",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/cloudintegration/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"cloudintegration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable a specific cloud integration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/cloudintegration/:id/disable",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"cloudintegration",
+								":id",
+								"disable"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable a specific cloud integration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/cloudintegration/:id/enable",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"cloudintegration",
+								":id",
+								"enable"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undelete a specific cloud integration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/cloudintegration/:id/undelete",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"cloudintegration",
+								":id",
+								"undelete"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's non-deleted cloud integrations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/cloudintegration",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"cloudintegration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's deleted cloud integrations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/cloudintegration/deleted",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"cloudintegration",
+								"deleted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's deleted cloud integrations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/cloudintegration/deleted/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"cloudintegration",
+								"deleted",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's deleted cloud integrations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/cloudintegration/deleted/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"cloudintegration",
+								"deleted",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's non-deleted cloud integrations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/cloudintegration/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"cloudintegration",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's non-deleted cloud integrations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/cloudintegration/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"cloudintegration",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c4492301-d6de-485e-b76b-208e91e3c487",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "62274986-faae-4f2d-94a4-b43cf7655f22",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Dashboards",
+			"item": [
+				{
+					"name": "Remove a tag from a specific dashboard",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id/tag/:tagValue",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id",
+								"tag",
+								":tagValue"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "tagValue",
+									"value": "{{tagValue}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all dashboards for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a specific dashboard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\": \"Dashboard API example\",\n  \"id\": \"api-example\",\n  \"url\": \"api-example\",\n  \"description\": \"Dashboard Description\",\n  \"sections\": [\n    {\n      \"name\": \"Section 1\",\n      \"rows\": [\n        {\n          \"charts\": [\n            {\n              \"name\": \"Chart 1\",\n              \"description\": \"description1\",\n              \"sources\": [\n                {\n                  \"name\": \"Source1\",\n                  \"query\": \"ts()\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific dashboard",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\": \"Dashboard API example\",\n  \"id\": \"api-example\",\n  \"url\": \"api-example\",\n  \"description\": \"Dashboard Description\",\n  \"sections\": [\n    {\n      \"name\": \"Section 1\",\n      \"rows\": [\n        {\n          \"charts\": [\n            {\n              \"name\": \"Chart 1\",\n              \"description\": \"description1\",\n              \"sources\": [\n                {\n                  \"name\": \"Source1\",\n                  \"query\": \"ts()\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific dashboard",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the version history of a specific dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id/history?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id",
+								"history"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific version of a specific dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id/history/:version",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id",
+								"history",
+								":version"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "version",
+									"value": "{{version}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tags associated with a specific dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id/tag",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id",
+								"tag"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set all tags associated with a specific dashboard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id/tag",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id",
+								"tag"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a tag to a specific dashboard",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "hhttps://{{INSTANCE}}/api/v2/dashboard/:id/tag/:tagValue",
+							"protocol": "hhttps",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id",
+								"tag",
+								":tagValue"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "tagValue",
+									"value": "{{tagValue}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undelete a specific dashboard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/dashboard/:id/undelete",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"dashboard",
+								":id",
+								"undelete"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's non-deleted dashboards",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/dashboard",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's deleted dashboards",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/dashboard/deleted/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"dashboard",
+								"deleted",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's non-deleted dashboards",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/dashboard/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"dashboard",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's non-deleted dashboards",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/dashboard/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"dashboard",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's deleted dashboards",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/dashboard/deleted/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"dashboard",
+								"deleted",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's deleted dashboards",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/dashboard/deleted",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"dashboard",
+								"deleted"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5073a7ee-ebd5-43d0-a1f4-ca24f55b4515",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1282d9e-fa45-4819-b689-8b4726116cbc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "List all the events for a customer within a time range",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event?earliestStartTimeEpochMillis={{earliestStartTimeEpochMillis}}&latestStartTimeEpochMillis={{latestStartTimeEpochMillis}}&cursor={{cursor}}&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event"
+							],
+							"query": [
+								{
+									"key": "earliestStartTimeEpochMillis",
+									"value": "{{earliestStartTimeEpochMillis}}",
+									"equals": true
+								},
+								{
+									"key": "latestStartTimeEpochMillis",
+									"value": "{{latestStartTimeEpochMillis}}",
+									"equals": true
+								},
+								{
+									"key": "cursor",
+									"value": "{{cursor}}",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a specific event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\": \"Event API Example\",\n  \"annotations\": {\n    \"severity\": \"info\",\n    \"type\": \"event type\",\n    \"details\": \"description\"\n  },\n  \"startTime\": 1490000000000,\n  \"endTime\": 1490000000001\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event"
+							]
+						},
+						"description": "The following fields are readonly and will be ignored when passed in the request: <code>id</code>, <code>isEphemeral</code>, <code>isUserEvent</code>, <code>runningState</code>, <code>canDelete</code>, <code>canClose</code>, <code>creatorType</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>createdEpochMillis</code>, <code>updatedEpochMillis</code>, <code>updaterId</code>, <code>creatorId</code>, and <code>summarizedEvents</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific event",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific event",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\": \"Event API Example\",\n  \"annotations\": {\n    \"severity\": \"info\",\n    \"type\": \"event type\",\n    \"details\": \"description\"\n  },\n  \"startTime\": 1490000000000,\n  \"endTime\": 1490000000001\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "The following fields are readonly and will be ignored when passed in the request: <code>id</code>, <code>isEphemeral</code>, <code>isUserEvent</code>, <code>runningState</code>, <code>canDelete</code>, <code>canClose</code>, <code>creatorType</code>, <code>createdAt</code>, <code>updatedAt</code>, <code>createdEpochMillis</code>, <code>updatedEpochMillis</code>, <code>updaterId</code>, <code>creatorId</code>, and <code>summarizedEvents</code>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close a specific event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event/:id/close",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event",
+								":id",
+								"close"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tags associated with a specific event",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event/:id/tag",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event",
+								":id",
+								"tag"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set all tags associated with a specific event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event/:id/tag",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event",
+								":id",
+								"tag"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a tag to a specific event",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event/:id/tag/:tagValue",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event",
+								":id",
+								"tag",
+								":tagValue"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "tagValue",
+									"value": "{{tagValue}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove a tag from a specific event",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/event/:id/tag/:tagValue",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"event",
+								":id",
+								"tag",
+								":tagValue"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "tagValue",
+									"value": "{{tagValue}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's events",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/event",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's events",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/event/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"event",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's events",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/event/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"event",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "69802935-7bfe-487d-adc7-77d6cd7d00c3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "19e377b6-1124-4356-af23-b760f470d671",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "External Links",
+			"item": [
+				{
+					"name": "Get all external links for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/extlink?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"extlink"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a specific external link",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\": \"External Link API Example\",\n  \"template\": \"https://example.com/{{source}}\",\n  \"description\": \"External Link Description\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/extlink",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"extlink"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific external link",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/extlink/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"extlink",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific external link",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\": \"External Link API Example\",\n  \"template\": \"https://example.com/{{source}}\",\n  \"description\": \"External Link Description\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/extlink/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"extlink",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific external link",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/extlink/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"extlink",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Integrations",
+			"item": [
+				{
+					"name": "Gets a single Wavefront integration by its id, along with its status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/integration/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"integration",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets the status of a single Wavefront integration",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/integration/:id/status",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"integration",
+								":id",
+								"status"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Uninstalls a Wavefront integration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/integration/:id/uninstall",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"integration",
+								":id",
+								"uninstall"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets the status of all Wavefront integrations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/integration/status",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"integration",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets a flat list of all Wavefront integrations available, along with their status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/integration?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"integration"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets all Wavefront integrations as structured in their integration manifests, along with their status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/integration/manifests",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"integration",
+								"manifests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Installs a Wavefront integration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/integration/:id/install",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"integration",
+								":id",
+								"install"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "121f6595-0fd2-435e-aaa7-d169c7e47632",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "cdc8d09d-6731-4d32-809a-4943830f3c23",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Maintenance Windows",
+			"item": [
+				{
+					"name": "Delete a specific maintenance window",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/maintenancewindow/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"maintenancewindow",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific maintenance window",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"reason\": \"MW Reason\",\n  \"title\": \"MW Title\",\n  \"startTimeInSeconds\": 1483228800,\n  \"endTimeInSeconds\": 1483232400,\n  \"relevantCustomerTags\": [\n    \"alertId1\"\n  ],\n  \"relevantHostTags\": [\n    \"sourceTag1\"\n  ]\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/maintenancewindow/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"maintenancewindow",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific maintenance window",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/maintenancewindow/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"maintenancewindow",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a maintenance window",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"reason\": \"MW Reason\",\n  \"title\": \"MW Title\",\n  \"startTimeInSeconds\": 1483228800,\n  \"endTimeInSeconds\": 1483232400,\n  \"relevantCustomerTags\": [\n    \"alertId1\"\n  ],\n  \"relevantHostTags\": [\n    \"sourceTag1\"\n  ]\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/maintenancewindow",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"maintenancewindow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all maintenance windows for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/maintenancewindow?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"maintenancewindow"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification Targets",
+			"item": [
+				{
+					"name": "Delete a specific notification target",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/notificant/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"notificant",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific notification target",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"description\": \"Notificant Description\",\n  \"template\": \"POST Body -- Mustache syntax\",\n  \"title\": \"Email title\",\n  \"triggers\": [\n    \"ALERT_OPENED\"\n  ],\n  \"method\": \"EMAIL\",\n  \"recipient\": \"value@example.com\",\n  \"emailSubject\": \"Email subject cannot contain new line\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/notificant/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"notificant",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific notification target",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/notificant/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"notificant",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test a specific notification target",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/notificant/test/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"notificant",
+								"test",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a notification target",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"description\": \"Notificant Description\",\n  \"template\": \"POST Body -- Mustache syntax\",\n  \"title\": \"Email title\",\n  \"triggers\": [\n    \"ALERT_OPENED\"\n  ],\n  \"method\": \"EMAIL\",\n  \"recipient\": \"value@example.com\",\n  \"emailSubject\": \"Email subject cannot contain new line\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/notificant",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"notificant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all notification targets for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/notificant?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"notificant"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0657f51c-2384-4f8b-840f-042beef62f91",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e19b2c2-a103-4b58-ae60-91fce85bd066",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Mark a specific message as read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/message/:id/read",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"message",
+								":id",
+								"read"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Proxies",
+			"item": [
+				{
+					"name": "Undelete a specific proxy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/proxy/:id/undelete",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"proxy",
+								":id",
+								"undelete"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific proxy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/proxy/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"proxy",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update the name of a specific proxy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"name\": \"New Name for proxy\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/proxy/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"proxy",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific proxy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/proxy/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"proxy",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all proxies for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/proxy?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"proxy"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d44cbfdb-25be-44fb-981d-5b93bb7c28a1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca582e9-57f6-432d-8dea-90b8ebf350da",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "Lists the values of a specific facet over the customer's non-deleted proxies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/proxy/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"proxy",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's deleted proxies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/proxy/deleted",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"proxy",
+								"deleted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's non-deleted proxies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/proxy",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"proxy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's notificants",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/notificant",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"notificant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's maintenance windows",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/maintenancewindow",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"maintenancewindow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's external links",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/extlink",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"extlink"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specific saved search",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/savedsearch/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"savedsearch",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific saved search",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"query\": {\n    \"foo\": \"{\\\"searchTerms\\\":[{\\\"type\\\":\\\"freetext\\\",\\\"value\\\":\\\"foo\\\"}]}\"\n  },\n  \"entityType\": \"DASHBOARD\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/savedsearch/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"savedsearch",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific saved search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/savedsearch/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"savedsearch",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a saved search",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"query\": {\n    \"foo\": \"{\\\"searchTerms\\\":[{\\\"type\\\":\\\"freetext\\\",\\\"value\\\":\\\"foo\\\"}]}\"\n  },\n  \"entityType\": \"DASHBOARD\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/savedsearch",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"savedsearch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's non-deleted proxies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/proxy/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"proxy",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's deleted proxies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/proxy/deleted/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"proxy",
+								"deleted",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's deleted proxies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/proxy/deleted/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"proxy",
+								"deleted",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's notificants",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/notificant/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"notificant",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's notificants",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/notificant/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"notificant",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's maintenance windows",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/maintenancewindow/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"maintenancewindow",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's maintenance windows",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/maintenancewindow/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"maintenancewindow",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's external links",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/extlink/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"extlink",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's external links",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/extlink/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"extlink",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sources",
+			"item": [
+				{
+					"name": "Remove a tag from a specific source",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id/tag/:tagValue",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id",
+								"tag",
+								":tagValue"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "tagValue",
+									"value": "{{tagValue}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a tag to a specific source",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id/tag/:tagValue",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id",
+								"tag",
+								":tagValue"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								},
+								{
+									"key": "tagValue",
+									"value": "{{tagValue}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all tags associated with a specific source",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id/tag",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id",
+								"tag"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove description from a specific source",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id/description",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id",
+								"description"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set description associated with a specific source",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id/description",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id",
+								"description"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete metadata (description and tags) for a specific source",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update metadata (description or tags) for a specific source.",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n    \"sourceName\": \"source.name\",\n    \"tags\": {\"sourceTag1\": true},\n    \"description\": \"Source Description\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "The \"hidden\" property is stored as a tag. To set the value, add \"hidden\": &lt;value&gt; to the list of tags."
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific source for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create metadata (description or tags) for a specific source",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n    \"sourceName\": \"source.name\",\n    \"tags\": {\"sourceTag1\": true},\n    \"description\": \"Source Description\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all sources for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source?cursor={{cursor}}&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source"
+							],
+							"query": [
+								{
+									"key": "cursor",
+									"value": "{{cursor}}",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's sources",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/source/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"source",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's sources",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/source/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"source",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's sources",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/source",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"source"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set all tags associated with a specific source",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/source/:id/tag",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"source",
+								":id",
+								"tag"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "353c7620-846a-43f6-85f5-951ca84ced4d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "97de30b2-95af-4e1b-8df7-be9eb57cf4d1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Revokes a specific user permission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "group",
+									"value": "{{group}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/user/:id/revoke",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								":id",
+								"revoke"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grants a specific user permission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "group",
+									"value": "{{group}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/user/:id/grant",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								":id",
+								"grant"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes a user identified by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/user/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates or updates a user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"emailAddress\": \"user@example.com\",\n  \"groups\": [\n    \"browse\"\n  ]\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/user?sendEmail={{sendEmail}}",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user"
+							],
+							"query": [
+								{
+									"key": "sendEmail",
+									"value": "{{sendEmail}}",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/metrics.wavefront.com/api/v2/user",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"metrics.wavefront.com",
+								"api",
+								"v2",
+								"user"
+							]
+						},
+						"description": "Returns all users"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all saved searches for a specific entity type for a user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/savedsearch/type/:entitytype?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"savedsearch",
+								"type",
+								":entitytype"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							],
+							"variable": [
+								{
+									"key": "entitytype",
+									"value": "{{entitytype}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all saved searches for a user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/savedsearch?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"savedsearch"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets messages applicable to the current user, i.e. within time range and distribution scope",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/message?offset=0&limit=100&unreadOnly=true",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"message"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								},
+								{
+									"key": "unreadOnly",
+									"value": "true",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieves a user by identifier (email addr)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/user/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Webhooks",
+			"item": [
+				{
+					"name": "Delete a specific webhook",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/webhook/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"webhook",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search over a customer's webhooks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/webhook",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"webhook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of one or more facets over the customer's webhooks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/webhook/facets",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"webhook",
+								"facets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists the values of a specific facet over the customer's webhooks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/search/webhook/:facet",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"search",
+								"webhook",
+								":facet"
+							],
+							"variable": [
+								{
+									"key": "facet",
+									"value": "{{facet}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all webhooks for a customer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/webhook?offset=0&limit=100",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"webhook"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "limit",
+									"value": "100",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a specific webhook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"description\": \"WebHook Description\",\n  \"template\": \"POST Body -- Mustache syntax\",\n  \"title\": \"WebHook Title\",\n  \"triggers\": [\n    \"ALERT_OPENED\"\n  ],\n  \"recipient\": \"http://example.com\",\n  \"customHttpHeaders\": {},\n  \"contentType\": \"text/plain\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/webhook",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"webhook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific webhook",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/webhook/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"webhook",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specific webhook",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "Example Body: \n<pre>{\n  \"description\": \"WebHook Description\",\n  \"template\": \"POST Body -- Mustache syntax\",\n  \"title\": \"WebHook Title\",\n  \"triggers\": [\n    \"ALERT_OPENED\"\n  ],\n  \"recipient\": \"http://example.com\",\n  \"customHttpHeaders\": {},\n  \"contentType\": \"text/plain\"\n}</pre>"
+						},
+						"url": {
+							"raw": "https://{{INSTANCE}}/api/v2/webhook/:id",
+							"protocol": "https",
+							"host": [
+								"{{INSTANCE}}"
+							],
+							"path": [
+								"api",
+								"v2",
+								"webhook",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{AUTH_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "316d95af-4051-4d01-8eed-73c4ec9091ec",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "893a9463-bd7a-4950-8e4b-79dce99e6818",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0b8e4cb0-1bf5-4efe-adb8-36f1eff8180a",
+			"key": "AUTH_TOKEN",
+			"value": "",
+			"type": "text"
+		},
+		{
+			"id": "12cee217-38a2-434b-9514-8eb22b47a336",
+			"key": "INSTANCE",
+			"value": "metrics.wavefront.com",
+			"type": "text"
+		}
+	]
+}
